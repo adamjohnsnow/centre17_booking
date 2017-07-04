@@ -3,6 +3,7 @@ require 'dm-postgres-adapter'
 require_relative './models/user'
 require_relative './models/booking'
 require_relative './models/payment'
+require_relative './models/slot'
 
 if ENV['RACK_ENV'] == 'test'
   @database = "postgres://localhost/centre17_test"

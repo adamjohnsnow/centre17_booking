@@ -11,6 +11,7 @@ require_relative '../app'
 require_relative '../data_mapper_setup'
 
 DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
 
 Capybara.app = Centre17Booking
 

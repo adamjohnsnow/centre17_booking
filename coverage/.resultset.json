@@ -1,13 +1,68 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/adamsnow/OneDrive/MacBook/Coding/work_projects/centre17_booking/spec/booking_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/adamsnow/OneDrive/MacBook/Coding/work_projects/centre17_booking/spec/payment_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/adamsnow/OneDrive/MacBook/Coding/work_projects/centre17_booking/spec/slot_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
       "/Users/adamsnow/OneDrive/MacBook/Coding/work_projects/centre17_booking/spec/user_spec.rb": [
-        null,
         1,
-        null,
-        1,
-        1,
-        null,
         null,
         1,
         1,
@@ -18,6 +73,15 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        2,
+        null,
+        2,
         null,
         2,
         null,
@@ -32,6 +96,6 @@
         null
       ]
     },
-    "timestamp": 1499167121
+    "timestamp": 1499193535
   }
 }

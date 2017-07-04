@@ -12,8 +12,19 @@ class Centre17Booking < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    @user = User.all
     erb :index
   end
 
+  get '/home' do
+  end
+
+  post '/sign_in' do
+    @user = User.login(params)
+    bad_sign_in if @user.nil?
+    session[:user] = @user.name
+    session[:user_id] = @user.id
+    redirect '/home'
+  end
 
 end

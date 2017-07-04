@@ -16,4 +16,11 @@ class Booking
 
   belongs_to :user
 
+  def confirm(cash_quote, time_quote, notes)
+    self.status = :confirmed
+    self.cash_quote = cash_quote
+    self.time_quote = time_quote
+    self.admin_notes = notes
+    self.save!
+  end
 end
