@@ -10,10 +10,11 @@ class User
   property :surname, String
   property :email, String, :unique => true
   property :phone, String
-  property :password_digest, Text
+  property :password_digest, String
   property :cash_balance, Float
   property :time_balance, Float
   property :status, String
+  property :comments, Text
 
   has n, :bookings
   has n, :payments
@@ -22,14 +23,14 @@ class User
     self.password_digest = BCrypt::Password.create(pass)
   end
 
-  def self.create(firstname, surname, email, phone, password)
+  def self.create(firstname, surname, email, phone, password, comments)
     @email = email
     return if duplicate_email?
-    new_user(firstname, surname, email, phone, password)
+    new_user(firstname, surname, email, phone, password, comments)
     return @user
   end
 
-  def self.new_user(firstname, surname, email, phone, password)
+  def self.new_user(firstname, surname, email, phone, password, comments)
     @user = User.new(
             firstname: firstname,
             surname: surname,
@@ -37,7 +38,8 @@ class User
             phone: phone,
             status: :pending,
             cash_balance: 0,
-            time_balance: 0
+            time_balance: 0,
+            comments: comments
             )
     @user.password = password
     @user.save!

@@ -1,2 +1,14 @@
 <h1>Centre17 Home</h1>
 <h2>Welcome back, <%= @user %></h2>
+<% if @bookings.count > 0 %>
+  <ul>
+    <% @bookings.each do |booking| %>
+       <li><%= booking.title %></li>
+    <% end %>
+  </ul>
+  <% else %>
+    You currently have no active bookings
+<% end %>
+<div>
+  <a href="/newbooking">Request New Booking</a>
+</div>

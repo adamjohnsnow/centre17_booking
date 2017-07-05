@@ -17,6 +17,7 @@ class Centre17Booking < Sinatra::Base
 
   get '/home' do
     @user = session[:user]
+    @bookings = Booking.all(Booking.user_id => session[:user_id])
     erb :home
   end
 
@@ -36,11 +37,14 @@ class Centre17Booking < Sinatra::Base
     params[:password] == params[:verify_password] ? register_user(params) : bad_password
   end
 
+  get '/newbooking' do
+    erb :new_booking
+  end
   private
 
   def register_user(params)
     @user = User.create(params[:firstname], params[:surname],
-    params[:email], params[:phone], params[:password])
+    params[:email], params[:phone], params[:password], params[:comments])
     session[:user] = @user.firstname
     session[:user_id] = @user.id
     redirect '/home'
