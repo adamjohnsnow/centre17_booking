@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'pry'
 require_relative './data_mapper_setup'
+require_relative './models/slot_search'
 
 
 ENV['RACK_ENV'] ||= 'development'
@@ -21,7 +22,7 @@ class Centre17Booking < Sinatra::Base
     erb :home
   end
 
-  post '/signin' do
+  post '/sign-in' do
     @user = User.login(params)
     bad_sign_in if @user.nil?
     session[:user] = @user.firstname
@@ -29,16 +30,27 @@ class Centre17Booking < Sinatra::Base
     redirect '/home'
   end
 
-  get '/signup' do
+  get '/sign-up' do
     erb :new_user
   end
 
-  post '/signup' do
+  post '/sign-up' do
     params[:password] == params[:verify_password] ? register_user(params) : bad_password
   end
 
-  get '/newbooking' do
+  get '/new-booking' do
     erb :new_booking
+  end
+
+  post '/new-booking' do
+    session[:search] = params
+    redirect '/search-results'
+  end
+
+  get '/search-results' do
+    @results = SlotSearch.new(session[:search]).results
+    @duration = session[:search][:duration].to_i
+    erb :booking_search
   end
   private
 

@@ -10,3 +10,7 @@ def sign_up
   fill_in 'comments', with: 'This is my reason'
   click_button 'submit'
 end
+
+def create_some_slots
+  Slot.open_dates('05/07/2017', '05/08/2017')
+end

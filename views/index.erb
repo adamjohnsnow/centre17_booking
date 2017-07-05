@@ -3,11 +3,11 @@
 <div class="sign-in">
   Existing Users - Sign In
   <div><%= flash[:notice] %></div>
-  <form class="sign-in-form" action="/signin" method="post">
+  <form class="sign-in-form" action="/sign-in" method="post">
     <input type="text" name="email address" placeholder="email address">
     <input type="password" name="password" placeholder="password">
     <input type="submit" name="Submit" value="submit">
   </form>
-  <a href="/signup">New Users Register</a>
+  <a href="/sign-up">New Users Register</a>
 
 </div>

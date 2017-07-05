@@ -43,9 +43,23 @@ feature 'Homepage' do
     expect(page).to have_content 'You currently have no active bookings'
   end
 
-  scenario 'log in, make booking search' do
+  scenario 'got to search page' do
     sign_up
     click_link 'Request New Booking'
     expect(page).to have_content 'Select date to search from'
   end
+
+  scenario 'make booking search' do
+    create_some_slots
+    expect(Slot.all).not_to be_empty
+    sign_up
+    click_link 'Request New Booking'
+    fill_in 'date', with: '07/07/2017'
+    fill_in 'duration', with: 3
+    check 'afternoon'
+    click_button 'Start search'
+    expect(page).to have_content 'Available slots within 7 days of your search:'
+    expect(page).to have_content '07/07/2017 14:00-17:00 book'
+  end
+
 end

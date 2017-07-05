@@ -1,0 +1,6 @@
+Available slots within 7 days of your search:
+<ul>
+<% @results.each do |slot| %>
+<li> <%= slot.date.strftime("%d/%m/%Y") %> <%= slot.hour %>:00-<%= slot.hour.to_i + @duration %>:00 <a href="/book?id=<%=slot.id%>&dur=<%=@duration%>">book</a></li>
+<% end %>
+</ul>

@@ -1,6 +1,16 @@
 Select date to search from
-<form class="" action="/searchbooking" method="post">
-  <input type="date" name="date">Date
-  <input type="number" name="duration">Duration
-  <input type="submit" value="Start search">
+<form class="" action="/new-booking" method="post">
+  <p>
+    Date <input type="date" name="date">
+  </p>
+  <p>
+    Starting time
+    <input type="checkbox" name="morning"> Morning (8am-12pm)
+    <input type="checkbox" name="afternoon"> Afternoon (1pm-5pm)
+    <input type="checkbox" name="evening">Evening (6pm-11pm)
+  </p>
+  <p>
+    Duration <input type="number" name="duration" max="16" style="width: 35px"> hours
+  </p>
+  <p><input type="submit" value="Start search"></p>
 </form>
