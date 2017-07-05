@@ -45,7 +45,7 @@ class User
 
   def self.login(params)
     @user = User.first(email: params[:email])
-    @bcrypt = BCrypt::Password.new(@user.password_digest)
+    @bcrypt = BCrypt::Password.new(@user.password_digest) if @user
     return nil unless @user && @bcrypt == params[:password]
     return @user
   end

@@ -1,6 +1,6 @@
 describe Booking do
 
-  scenario 'create booking' do
+  it 'create booking' do
     Booking.create(
         user_id: 1,
         title: "Test",
@@ -13,7 +13,7 @@ describe Booking do
     expect(Booking.first.date_time).to eq(DateTime.new(2017, 06 ,01 , 14, 00, 00, "+01:00"))
   end
 
-  scenario 'booking gets confirmed' do
+  it 'booking gets confirmed' do
     test_booking = Booking.first
     test_booking.confirm(100.25, 2, "This is going to work")
     expect(test_booking.status).to eq 'confirmed'

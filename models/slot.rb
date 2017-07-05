@@ -21,4 +21,14 @@ class Slot
       this_date = this_date + 1
     end
   end
+
+  def self.book_slots(date, time, duration)
+    hour = time
+    until hour == (time + duration) do
+      slot = Slot.all(Slot.date => date, Slot.hour => hour)
+      slot[0].status = 'booked'
+      slot.save!
+      hour += 1
+    end
+  end
 end

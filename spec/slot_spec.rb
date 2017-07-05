@@ -12,4 +12,10 @@ describe Slot do
     expect(slot.status).to eq 'available'
     expect(slot.booking_id).to eq nil
   end
+
+  it 'books a slot' do
+    Slot.book_slots('01/01/2017', 10, 2)
+    expect(Slot.get(3).status).to eq 'booked'
+    expect(Slot.get(4).status).to eq 'booked'
+  end
 end

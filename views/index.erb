@@ -2,11 +2,12 @@
 <h2>Booking Portal</h2>
 <div class="sign-in">
   Existing Users - Sign In
-  <form class="sign-in-form" action="/sign_in" method="post">
+  <div><%= flash[:notice] %></div>
+  <form class="sign-in-form" action="/signin" method="post">
     <input type="text" name="email address" placeholder="email address">
     <input type="password" name="password" placeholder="password">
     <input type="submit" name="Submit" value="submit">
   </form>
-  <a href="/sign-up">New Users Register</a>
+  <a href="/signup">New Users Register</a>
 
 </div>

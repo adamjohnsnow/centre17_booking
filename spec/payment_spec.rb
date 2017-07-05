@@ -1,6 +1,6 @@
 describe Payment do
 
-    scenario 'create payment' do
+    it 'create payment' do
       Payment.create(
           user_id: 1,
           cash_payment: 100.25,
