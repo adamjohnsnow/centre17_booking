@@ -51,6 +51,18 @@ class Centre17Booking < Sinatra::Base
     @duration = session[:search][:duration].to_i
     erb :booking_search
   end
+
+  get '/book' do
+    @slots = Slot.get_collection(params[:id], params[:dur].to_i - 1)
+    @duration = params[:dur].to_i
+    erb :make_booking_request
+  end
+
+  post '/book' do
+    p params
+    flash.next[:notice] = 'Thank you for your booking request. Someone from the CentrE17 team will be in touch with confirmation soon.'
+    redirect '/home'
+  end
   private
 
   def register_user(params)

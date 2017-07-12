@@ -1,5 +1,6 @@
 <h1>Centre17 Home</h1>
 <h2>Welcome back, <%= @user %></h2>
+<%= flash[:notice] %>
 <% if @bookings.count > 0 %>
   <ul>
     <% @bookings.each do |booking| %>

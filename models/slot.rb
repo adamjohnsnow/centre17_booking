@@ -28,7 +28,7 @@ class Slot
   def self.book_slots(date, time, duration, id)
     hour = time
     until hour == (time + duration) do
-      slot = Slot.all(Slot.date => date, Slot.hour => hour)
+      slot = Slot.all(:date => date, :hour => hour)
       slot[0].status = 'booked'
       slot[0].booking_id = id
       slot.save!
@@ -36,6 +36,10 @@ class Slot
     end
   end
 
+  def self.get_collection(id, duration)
+    slots = Slot.all(:id.gte => id)
+    return slots[0..duration]
+  end
   private
 
   def self.get_price(date, hour)

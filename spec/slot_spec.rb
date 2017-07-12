@@ -20,7 +20,7 @@ describe Slot do
   end
 
   it 'books a slot' do
-    Slot.book_slots('07/07/2017', 10, 2)
+    Slot.book_slots('07/07/2017', 10, 2, 1)
     expect(Slot.get(3).status).to eq 'booked'
     expect(Slot.get(4).status).to eq 'booked'
   end

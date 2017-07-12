@@ -43,6 +43,7 @@ class SlotSearch
 
   def self.all_free(collection)
     available = collection.select{ |slot| slot.booking_id == nil }
-    available.length == @duration && (available.map{ |x| x.date == available[0].date }).count(false) == 0
+    same_days = available.map{ |x| x.date == available[0].date }
+    available.length == @duration && same_days.count(false) == 0
   end
 end
