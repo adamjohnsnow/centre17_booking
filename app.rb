@@ -79,7 +79,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   def bad_sign_in
-    flash.next[:notice] = 'you could not be signed in, try again'
+    flash.next[:notice] = 'You could not be signed in, please try again or register'
     redirect '/'
   end
 end

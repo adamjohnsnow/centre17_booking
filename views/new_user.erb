@@ -1,15 +1,15 @@
 <div class="sign-in">
-  New Users - Register
+  <h2> New Users - Register </h2>
   <div><%= flash[:notice] %></div>
   <form class="register-form" action="/sign-up" method="post">
-    <input type="text" name="firstname" placeholder="first name">
-    <input type="text" name="surname" placeholder="surname">
-    <input type="text" name="email address" placeholder="email address">
-    <input type="text" name="phone" placeholder="phone number">
-    <input type="password" name="password" placeholder="password">
-    <input type="password" name="verify_password" placeholder="verify password">
-    <input type="text" name="comments" placeholder="what will you be booking the space for?">
-    <input type="submit" name="Submit" value="submit">
+    <p><input type="text" name="firstname" placeholder="first name">
+    <input type="text" name="surname" placeholder="surname"></p>
+    <p><input type="email" name="email address" placeholder="email address" size="40"></p>
+    <p><input type="text" name="phone" placeholder="phone number"></p>
+    <p><input type="password" name="password" placeholder="password">
+    <input type="password" name="verify_password" placeholder="verify password"></p>
+    <p><textarea name="comments" cols="40" rows="4">What type of events will you be booking the space for?</textarea></p>
+    <input class="btn" type="submit" name="Submit" value="submit">
   </form>
   <a href="/">Existing Users Log In</a>
 

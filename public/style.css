@@ -1,0 +1,53 @@
+.banner {
+  background: #a90329;
+  background: -moz-linear-gradient(-40deg, #a90329 0%, #8f0222 78%, #EA5900 78%);
+  background: -webkit-linear-gradient(-40deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
+  background: linear-gradient(135deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#f2ad00',GradientType=1 );
+  font-size: 60px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  padding-left: 20px;
+  text-align: left;
+}
+
+body{
+  font-family: 'Archivo Narrow', sans-serif;
+  margin: auto;
+  text-align: center;
+  font-size: 115%;
+}
+
+.btn {
+  background: #a90329;
+  background-image: -webkit-linear-gradient(top, #a90329, #8f0222);
+  background-image: -moz-linear-gradient(top, #a90329, #8f0222);
+  background-image: -ms-linear-gradient(top, #a90329, #8f0222);
+  background-image: -o-linear-gradient(top, #a90329, #8f0222);
+  background-image: linear-gradient(to bottom, #a90329, #8f0222);
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  border-width: 0;
+  color: #ffffff;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 18px;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #EA5900;
+  background-image: -webkit-linear-gradient(top, #EA5900, #8f0222);
+  background-image: -moz-linear-gradient(top, #EA5900, #8f0222);
+  background-image: -ms-linear-gradient(top, #EA5900, #8f0222);
+  background-image: -o-linear-gradient(top, #EA5900, #8f0222);
+  background-image: linear-gradient(to bottom, #EA5900, #8f0222);
+  text-decoration: none;
+}
+
+.flash {
+  color: red;
+  font-style: italic;
+
+}

@@ -1,13 +1,12 @@
-<h1>Centre17</h1>
-<h2>Booking Portal</h2>
+<h1>Booking Portal</h1>
 <div class="sign-in">
   Existing Users - Sign In
-  <div><%= flash[:notice] %></div>
   <form class="sign-in-form" action="/sign-in" method="post">
-    <input type="text" name="email address" placeholder="email address">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" name="Submit" value="submit">
+    <p><input type="email" name="email address" placeholder="email address" size="40">
+    <input type="password" name="password" placeholder="password"></p>
+    <input class="btn" type="submit" name="Submit" value="submit">
   </form>
   <a href="/sign-up">New Users Register</a>
+  <div class="flash"><%= flash[:notice] %></div>
 
 </div>
