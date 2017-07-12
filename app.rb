@@ -4,7 +4,6 @@ require 'pry'
 require_relative './data_mapper_setup'
 require_relative './models/slot_search'
 
-
 ENV['RACK_ENV'] ||= 'development'
 
 class Centre17Booking < Sinatra::Base
@@ -48,7 +47,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   get '/search-results' do
-    @results = SlotSearch.new(session[:search]).results
+    @results = SlotSearch.search(session[:search])
     @duration = session[:search][:duration].to_i
     erb :booking_search
   end

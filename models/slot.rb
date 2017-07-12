@@ -18,23 +18,19 @@ class Slot
     until this_date == Date.parse(end_date) + 1 do
       this_hour = 8
       16.times do
-        slot = Slot.create(
-          date: this_date,
-          hour: this_hour,
-          status: 'available',
-          base_price: get_price(this_date, this_hour)
-          )
+        create_slot(this_hour, this_date)
         this_hour += 1
       end
       this_date = this_date + 1
     end
   end
 
-  def self.book_slots(date, time, duration)
+  def self.book_slots(date, time, duration, id)
     hour = time
     until hour == (time + duration) do
       slot = Slot.all(Slot.date => date, Slot.hour => hour)
       slot[0].status = 'booked'
+      slot[0].booking_id = id
       slot.save!
       hour += 1
     end
@@ -49,5 +45,14 @@ class Slot
       return PEAK_PRICE
     end
     return OFF_PEAK_PRICE
+  end
+
+  def self.create_slot(this_hour, this_date)
+    slot = Slot.create(
+      date: this_date,
+      hour: this_hour,
+      status: 'available',
+      base_price: get_price(this_date, this_hour)
+      )
   end
 end

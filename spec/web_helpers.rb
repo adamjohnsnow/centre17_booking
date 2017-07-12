@@ -14,3 +14,13 @@ end
 def create_some_slots
   Slot.open_dates('05/07/2017', '05/08/2017')
 end
+
+def create_two_day_slots
+  Slot.open_dates('01/08/2017', '02/08/2017')
+end
+
+def book_one_slot
+  slot = Slot.get(2)
+  slot.update(status: 'booked', booking_id: 1)
+  slot.save!
+end
