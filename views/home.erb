@@ -1,6 +1,6 @@
 <h1>Booking Portal</h1>
 <h2>Hello, <%= @user %></h2>
-<%= flash[:notice] %>
+<div class="flash"><%= flash[:notice] %></div>
 <% if @bookings.count > 0 %>
   <ul>
     <% @bookings.each do |booking| %>
