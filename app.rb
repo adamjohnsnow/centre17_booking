@@ -24,6 +24,7 @@ class Centre17Booking < Sinatra::Base
   post '/sign-in' do
     @user = User.login(params)
     bad_sign_in if @user.nil?
+    pending_approval if @user.status == 'pending'
     session[:user] = @user.firstname
     session[:user_id] = @user.id
     redirect '/home'
@@ -59,7 +60,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   post '/book' do
-    p params
+    Booking.book(params, session[:user_id])
     flash.next[:notice] = 'Thank you for your booking request. Someone from the CentrE17 team will be in touch with confirmation soon.'
     redirect '/home'
   end
@@ -68,13 +69,17 @@ class Centre17Booking < Sinatra::Base
   def register_user(params)
     @user = User.create(params[:firstname], params[:surname],
     params[:email], params[:phone], params[:password], params[:comments])
-    session[:user] = @user.firstname
-    session[:user_id] = @user.id
-    redirect '/home'
+    flash.next[:notice] = 'Your account has been sent for approval. Once validated you will receive an approval email. Thanks.'
+    redirect '/'
   end
 
   def bad_password
     flash.next[:notice] = 'your passwords did not match, try again'
+    redirect '/'
+  end
+
+  def pending_approval
+    flash.next[:notice] = 'Your account has not yet been approved, please try again after you receive an approval email. Thanks.'
     redirect '/'
   end
 

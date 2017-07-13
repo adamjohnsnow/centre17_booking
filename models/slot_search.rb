@@ -18,7 +18,7 @@ class SlotSearch
   end
 
   def self.get_latest(keys)
-    return 24 - @duration if keys.count('evening') == 1
+    return 24 if keys.count('evening') == 1
     return 18 + @duration - 1 if keys.count('afternoon') == 1
     return 13 + @duration - 1
   end
@@ -42,7 +42,7 @@ class SlotSearch
   end
 
   def self.all_free(collection)
-    available = collection.select{ |slot| slot.booking_id == nil }
+    available = collection.select{ |slot| slot.status == 'available' }
     same_days = available.map{ |x| x.date == available[0].date }
     available.length == @duration && same_days.count(false) == 0
   end

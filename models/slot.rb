@@ -11,7 +11,8 @@ class Slot
   property :hour, Integer
   property :status, String
   property :base_price, Float
-  property :booking_id, String
+
+  has n, :bookings, through: Resource
 
   def self.open_dates(start_date, end_date)
     this_date = Date.parse(start_date)
@@ -30,7 +31,6 @@ class Slot
     until hour == (time + duration) do
       slot = Slot.all(:date => date, :hour => hour)
       slot[0].status = 'booked'
-      slot[0].booking_id = id
       slot.save!
       hour += 1
     end

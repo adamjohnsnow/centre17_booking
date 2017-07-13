@@ -5,12 +5,9 @@ describe Booking do
         user_id: 1,
         title: "Test",
         description: "A description of this booking, might be very long, might not be",
-        date_time: "14:00 01/06/2017",
-        duration: 2
         )
     expect(Booking.all.count).to eq 1
     expect(Booking.first.title).to eq 'Test'
-    expect(Booking.first.date_time).to eq(DateTime.new(2017, 06 ,01 , 14, 00, 00, "+01:00"))
   end
 
   it 'booking gets confirmed' do

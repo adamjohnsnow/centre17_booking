@@ -11,7 +11,6 @@ describe Slot do
     expect(slot.hour).to eq 17
     expect(slot.status).to eq 'available'
     expect(slot.base_price).to eq 30
-    expect(slot.booking_id).to eq nil
   end
 
   it 'gives peak prices' do
