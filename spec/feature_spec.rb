@@ -69,5 +69,9 @@ feature 'Homepage' do
     expect(Booking.all.count).to eq 1
     expect(Booking.first.lighting).to be true
     expect(Booking.first.slots.count).to eq 3
+    expect(page).to have_content 'Thank you for your booking request. Someone from the CentrE17'
+    expect(page).to have_content 'Event One'
+    expect(page).to have_content '07/07'
+    expect(page).to have_content 'Status: pending'
   end
 end

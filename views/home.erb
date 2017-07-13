@@ -2,14 +2,18 @@
 <h2>Hello, <%= @user %></h2>
 <div class="flash"><%= flash[:notice] %></div>
 <% if @bookings.count > 0 %>
-  <ul>
+  <h3> Your Bookings: </h3>
     <% @bookings.each do |booking| %>
-       <li><%= booking.title %></li>
+      <div>
+       <strong><%= booking.title %></strong><br>
+       <%= "#{booking.slots[0].date.strftime("%d/%m/%Y")} #{booking.slots[0].hour}:00-#{booking.slots.last.hour}:00" %><br>
+       <i>Status: <%= booking.status %></i><br><br>
+     </div>
     <% end %>
-  </ul>
   <% else %>
     You currently have no active bookings
 <% end %>
+<br><br>
 <div>
   <a href="/new-booking">Request New Booking</a>
 </div>

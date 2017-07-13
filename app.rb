@@ -64,6 +64,7 @@ class Centre17Booking < Sinatra::Base
     flash.next[:notice] = 'Thank you for your booking request. Someone from the CentrE17 team will be in touch with confirmation soon.'
     redirect '/home'
   end
+  
   private
 
   def register_user(params)
