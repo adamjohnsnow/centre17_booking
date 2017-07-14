@@ -1,14 +1,24 @@
 .banner {
-  background: #a90329;
-  background: -moz-linear-gradient(-40deg, #a90329 0%, #8f0222 78%, #EA5900 78%);
-  background: -webkit-linear-gradient(-40deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
-  background: linear-gradient(135deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#f2ad00',GradientType=1 );
   font-size: 60px;
   font-family: 'Montserrat', sans-serif;
   color: white;
   padding-left: 20px;
   text-align: left;
+}
+
+.gradient {
+  background: #a90329;
+  background: -moz-linear-gradient(-40deg, #a90329 0%, #8f0222 78%, #EA5900 78%);
+  background: -webkit-linear-gradient(-40deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
+  background: linear-gradient(135deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#f2ad00',GradientType=1 );
+}
+
+.footer {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  padding-left: 20px;
 }
 
 body{

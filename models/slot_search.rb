@@ -1,4 +1,4 @@
-require_relative './slot'
+require_relative 'slot'
 
 class SlotSearch
   attr_reader :results

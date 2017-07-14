@@ -6,7 +6,7 @@
     <% @bookings.each do |booking| %>
       <div>
        <strong><%= booking.title %></strong><br>
-       <%= "#{booking.slots[0].date.strftime("%d/%m/%Y")} #{booking.slots[0].hour}:00-#{booking.slots.last.hour}:00" %><br>
+       <%= "#{booking.slots[0].date.strftime("%d/%m/%Y")} #{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
        <i>Status: <%= booking.status %></i><br><br>
      </div>
     <% end %>

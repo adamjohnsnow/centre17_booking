@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'pry'
 require_relative './data_mapper_setup'
-require_relative './models/slot_search'
+require_relative '../models/slot_search'
 
 ENV['RACK_ENV'] ||= 'development'
 
@@ -64,7 +64,7 @@ class Centre17Booking < Sinatra::Base
     flash.next[:notice] = 'Thank you for your booking request. Someone from the CentrE17 team will be in touch with confirmation soon.'
     redirect '/home'
   end
-  
+
   private
 
   def register_user(params)
@@ -75,7 +75,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   def bad_password
-    flash.next[:notice] = 'your passwords did not match, try again'
+    flash.next[:notice] = 'Your passwords did not match, please try again'
     redirect '/'
   end
 
