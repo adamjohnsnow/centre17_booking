@@ -1,6 +1,6 @@
 <div class="sign-in">
   <h2> New Users - Register </h2>
-  <div><%= flash[:notice] %></div>
+  <div class="flash"><%= flash[:notice] %></div>
   <form class="register-form" action="/sign-up" method="post">
     <p><input type="text" name="firstname" placeholder="first name">
     <input type="text" name="surname" placeholder="surname"></p>
@@ -9,7 +9,8 @@
     <p><input type="password" name="password" placeholder="password">
     <input type="password" name="verify_password" placeholder="verify password"></p>
     <p><textarea name="comments" cols="40" rows="4">What type of events will you be booking the space for?</textarea></p>
-    <input class="btn" type="submit" name="Submit" value="submit">
+    <p>All fields are mandatory</p>
+      <input class="btn" type="submit" name="Submit" value="submit">
   </form>
   <a href="/">Existing Users Log In</a>
 

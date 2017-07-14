@@ -35,6 +35,9 @@ class Centre17Booking < Sinatra::Base
   end
 
   post '/sign-up' do
+    incomplete_form if params[:firstname] == '' || params[:surname] == '' ||
+    params[:email] == '' || params[:phone] == '' || params[:password] == '' ||
+    params[:comments] == '' || params[:verify_password] == ''
     params[:password] == params[:verify_password] ? register_user(params) : bad_password
   end
 
@@ -65,6 +68,15 @@ class Centre17Booking < Sinatra::Base
     redirect '/home'
   end
 
+  get '/admin' do
+    authorised?
+    @pending_event = Booking.all(:status => 'pending')
+    @pending_users = User.all(:status => 'pending')
+    @today_events = Slot.all(:date => '24/07/2017')
+    @tomorrow_events = Slot.all(:date => '28/07/2017')
+    erb :admin
+  end
+
   private
 
   def register_user(params)
@@ -76,7 +88,12 @@ class Centre17Booking < Sinatra::Base
 
   def bad_password
     flash.next[:notice] = 'Your passwords did not match, please try again'
-    redirect '/'
+    redirect '/sign-up'
+  end
+
+  def incomplete_form
+    flash.next[:notice] = 'Please fill out all fields'
+    redirect '/sign-up'
   end
 
   def pending_approval
@@ -87,5 +104,9 @@ class Centre17Booking < Sinatra::Base
   def bad_sign_in
     flash.next[:notice] = 'You could not be signed in, please try again or register'
     redirect '/'
+  end
+
+  def authorised?
+    redirect '/home' unless session[:user_id] == 1
   end
 end

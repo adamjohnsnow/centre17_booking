@@ -1,12 +1,7 @@
 .banner {
-  font-size: 60px;
   font-family: 'Montserrat', sans-serif;
   color: white;
   padding-left: 20px;
-  text-align: left;
-}
-
-.gradient {
   background: #a90329;
   background: -moz-linear-gradient(-40deg, #a90329 0%, #8f0222 78%, #EA5900 78%);
   background: -webkit-linear-gradient(-40deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
@@ -14,11 +9,17 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#f2ad00',GradientType=1 );
 }
 
+.header {
+  font-size: 60px;
+  text-align: left;
+}
+
 .footer {
-  font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-  padding-left: 20px;
+  height: 20px;
+  font-size: 15px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 body{
@@ -59,5 +60,27 @@ body{
 .flash {
   color: red;
   font-style: italic;
+}
 
+.table{
+   display: inline-table;
+   width: 80%;
+}
+.table-row {
+  border: 1px solid #e3e3e3;
+	display: table-row;
+}
+.table-cell {
+	display: table-cell;
+	padding: 30px 6px 30px 6px;
+  vertical-align: top;
+}
+.table-body {
+	display: table-row-group;
+}
+
+.event {
+  color: white;
+  background-color: #EA5900;
+  padding: 0px 5px 0px 5px;
 }
