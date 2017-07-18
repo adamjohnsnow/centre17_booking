@@ -3,9 +3,9 @@
   color: white;
   padding-left: 20px;
   background: #a90329;
-  background: -moz-linear-gradient(-40deg, #a90329 0%, #8f0222 78%, #EA5900 78%);
-  background: -webkit-linear-gradient(-40deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
-  background: linear-gradient(135deg, #a90329 0%,#8f0222 78%,#EA5900 78%);
+  background: -moz-linear-gradient(-40deg, #e52325 0%, #f05a29 78%, #f9a65d 78%);
+  background: -webkit-linear-gradient(-40deg, #e52325 0%, #f05a29 78%, #f9a65d 78%);
+  background: linear-gradient(135deg, #e52325 0%, #f05a29 78%, #f9a65d 78%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#f2ad00',GradientType=1 );
 }
 
