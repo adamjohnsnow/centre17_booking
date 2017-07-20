@@ -17,7 +17,7 @@ class Centre17Booking < Sinatra::Base
 
   get '/home' do
     @user = session[:user]
-    @bookings = Booking.all(Booking.user_id => session[:user_id])
+    @bookings = Booking.all(:user_id => session[:user_id], :date.gte => Date.today)
     erb :home
   end
 
@@ -57,7 +57,12 @@ class Centre17Booking < Sinatra::Base
   end
 
   get '/book' do
+    @quote = 0
     @slots = Slot.get_collection(params[:id], params[:dur].to_i - 1)
+    @slots.each do |slot|
+      @quote += slot.base_price
+    end
+    p @quote
     @duration = params[:dur].to_i
     erb :make_booking_request
   end

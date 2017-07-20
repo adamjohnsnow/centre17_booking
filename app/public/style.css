@@ -1,3 +1,9 @@
+a {
+  text-decoration: none;
+}
+.banner a{
+  color: white;
+}
 .banner {
   font-family: 'Montserrat', sans-serif;
   color: white;

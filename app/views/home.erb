@@ -1,6 +1,11 @@
+<img width="300" style="padding-top: 30px;" src="https://i0.wp.com/thecentre17.com/wp-content/uploads/2017/03/cropped-cropped-cropped-centre17_outline_web_transparent.png">
 <h1>Booking Portal</h1>
 <h2>Hello, <%= @user %></h2>
 <div class="flash"><%= flash[:notice] %></div>
+<div>
+  <a href="/new-booking">Request New Booking</a>
+</div>
+
 <% if @bookings.count > 0 %>
   <h3> Your Bookings: </h3>
     <% @bookings.each do |booking| %>
@@ -14,6 +19,3 @@
     You currently have no active bookings
 <% end %>
 <br><br>
-<div>
-  <a href="/new-booking">Request New Booking</a>
-</div>
