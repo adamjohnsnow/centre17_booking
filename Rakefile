@@ -7,8 +7,8 @@ if ENV['RACK_ENV'] != 'production'
 end
 
 require 'data_mapper'
-require_relative './app'
-require_relative './data_mapper_setup'
+require_relative './app/app'
+require_relative './app/data_mapper_setup'
 
 namespace :db do
   desc 'Destruction of data'

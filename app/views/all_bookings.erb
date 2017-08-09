@@ -1,0 +1,25 @@
+<div class="table">
+  <div class="table-body">
+    <div class="table-row">
+      <div class="table-cell">Event</div>
+      <div class="table-cell">Date</div>
+      <div class="table-cell">Time</div>
+      <div class="table-cell">Status</div>
+      <div class="table-cell">Lights</div>
+      <div class="table-cell">Seats</div>
+      <div class="table-cell">Audio</div>
+      <div class="table-cell">Tickets</div>
+    </div>
+    <% @bookings.each do |booking| %>
+    <div class="table-row">
+      <div class="table-cell"><a href="/admin-booking?id=<%= booking.id %>"><%= booking.title %></a></div>
+      <div class="table-cell"><%= booking.slots.first.date.strftime("%d/%m/%Y") %></div>
+      <div class="table-cell"><%= booking.slots.first.hour %>:00 - <%= booking.slots.last.hour + 1 %>:00</div>
+      <div class="table-cell"><%= booking.status %></div>
+      <div class="table-cell"><%= 'Yes' if booking.lighting == true %></div>
+      <div class="table-cell"><%= 'Yes' if booking.seating == true %></div>
+      <div class="table-cell"><%= 'Yes' if booking.audio == true %></div>
+      <div class="table-cell"><%= 'Yes' if booking.tickets == true %></div>
+    </div>
+    <%end%>
+</div></div>

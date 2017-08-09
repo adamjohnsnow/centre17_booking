@@ -1,0 +1,24 @@
+<h2><%= @event.title %></h2>
+from
+<%= @event.user.firstname + ' ' + @event.user.surname %><br>
+<%= @event.slots.first.date.strftime("%d/%m/%Y") %> -
+<%= @event.slots.first.hour %>:00 - <%= @event.slots.last.hour + 1 %>:00<br>
+Description: <%= @event.description %><br>
+Lighting: <%= @event.lighting %><br>
+Seating: <%= @event.seating %><br>
+Audio: <%= @event.audio %><br>
+Tickets: <%= @event.tickets %><br>
+<form action="/admin-booking" method="post">
+  <input type="hidden" name="id" value="<%= @event.id %>">
+  <textarea cols="40" rows="4" name="admin_notes" value="<%= @event.admin_notes %>"></textarea>
+  <select name="status">
+    <% STATUS.each do |status| %>
+      <% if @event.status == status %>
+        <option selected value="<%= status %>"><%= status %></option>
+      <% else %>
+        <option value="<%= status %>"><%= status %></option>
+      <% end %>
+    <% end %>
+  </select>
+  <input type="submit">
+</form>

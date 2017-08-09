@@ -1,5 +1,5 @@
 
-feature 'Homepage' do
+feature 'User Journey' do
   after do
     DatabaseCleaner.clean
   end
@@ -24,7 +24,7 @@ feature 'Homepage' do
     fill_in 'comments', with: 'This is my reason'
     click_button 'submit'
     expect(User.all.count).to eq 0
-    expect(page).to have_content 'your passwords did not match, try again'
+    expect(page).to have_content 'Your passwords did not match, please try again'
   end
 
   scenario 'sign up, see approval notice' do
@@ -44,25 +44,26 @@ feature 'Homepage' do
 
   scenario 'got to search page' do
     sign_up
+    sign_in
     click_link 'Request New Booking'
-    expect(page).to have_content 'Select date to search from'
+    expect(page).to have_content 'Search for availability'
   end
 
   scenario 'make booking search' do
     do_search
     expect(page).to have_content 'Available slots within 7 days of your search:'
-    expect(page).to have_content '07/07/2017 14:00-17:00 book'
+    expect(page).to have_content '07/07/2017 14:00-17:00'
   end
 
   scenario 'book slot' do
     do_search
-    click_link('book', :match => :first)
-    expect(page).to have_content 'To finalise your booking request for 07/07'
+    click_link('07/07/2017 14:00-17:00')
+    expect(page).to have_content 'The approximate cost for this 3 hour booking is £90.00'
   end
 
   scenario 'request booking' do
     do_search
-    click_link('book', :match => :first)
+    click_link('07/07/2017 14:00-17:00')
     fill_in 'title', with: "Event One"
     check 'lighting'
     click_button 'Make Booking Request'
@@ -74,4 +75,28 @@ feature 'Homepage' do
     expect(page).to have_content '07/07'
     expect(page).to have_content 'Status: pending'
   end
+end
+
+feature 'Admin Journey' do
+  after do
+    DatabaseCleaner.clean
+  end
+
+  scenario 'not admin' do
+    sign_up_admin
+    sign_up
+    sign_in
+    visit '/admin'
+    expect(page).to have_content 'Hello, Mister'
+  end
+
+  scenario 'admin login' do
+    sign_up
+    sign_up_admin
+    sign_in
+    visit '/admin'
+    expect(page).to have_content 'On Today'
+  end
+
+
 end

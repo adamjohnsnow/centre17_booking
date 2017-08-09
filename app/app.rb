@@ -11,13 +11,15 @@ class Centre17Booking < Sinatra::Base
   set :session_secret, ENV['SESSION_SECRET'] || 'something'
   register Sinatra::Flash
 
+  STATUS = ['Pending', 'Approved', 'Declined', 'Cancelled']
+
   get '/' do
     erb :index
   end
 
   get '/home' do
     @user = session[:user]
-    @bookings = Booking.all(:user_id => session[:user_id], :date.gte => Date.today)
+    @bookings = User.get(session[:user_id]).bookings
     erb :home
   end
 
@@ -62,7 +64,6 @@ class Centre17Booking < Sinatra::Base
     @slots.each do |slot|
       @quote += slot.base_price
     end
-    p @quote
     @duration = params[:dur].to_i
     erb :make_booking_request
   end
@@ -75,13 +76,35 @@ class Centre17Booking < Sinatra::Base
 
   get '/admin' do
     authorised?
-    @pending_event = Booking.all(:status => 'pending')
-    @pending_users = User.all(:status => 'pending')
-    @today_events = Slot.all(:date => '24/07/2017')
-    @tomorrow_events = Slot.all(:date => '28/07/2017')
+    @pending_event = Booking.all(:status => 'Pending').sort_by{
+      |event| [event.slots.first[:date], event.slots.first[:hour]]
+    }
+    @pending_users = User.all(:status => 'Pending')
+    @today_events = Slot.all(:date => '11/08/2017', Slot.bookings.status => ['Approved', 'Pending'])
+    @tomorrow_events = Slot.all(:date => '14/08/2017', Slot.bookings.status => ['Approved', 'Pending'])
     erb :admin
   end
 
+  get '/admin-booking' do
+    authorised?
+    @event = Booking.get(params[:id])
+    erb :booking_admin
+  end
+
+  post '/admin-booking' do
+    authorised?
+    event = Booking.get(params[:id])
+    event.update(params)
+    event.save!
+    redirect '/admin'
+  end
+
+  get '/all-bookings' do
+    @bookings = Booking.all.sort_by{
+      |event| [event.slots.first[:date], event.slots.first[:hour]]
+    }
+    erb :all_bookings
+  end
   private
 
   def register_user(params)

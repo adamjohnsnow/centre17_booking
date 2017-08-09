@@ -2,14 +2,13 @@
   <div class="table-body">
     <div class="table-row">
       <div class="table-cell">
-
         <h3>On Today</h3>
         <% @today_events.each do |slot| %>
           <%= slot.hour %>:00
           <% if slot.bookings.count > 0 %>
-            <span class="event">
+            <a href="/admin-booking?id=<%= slot.bookings.first.id %>" class="<%= 'event' unless slot.bookings.first.status == 'Approved' %>">
               <%= slot.bookings.first.title %>
-            </span>
+            </a>
           <% end %><br>
         <% end %>
 
@@ -20,20 +19,22 @@
         <% @tomorrow_events.each do |slot| %>
           <%= slot.hour %>:00
           <% if slot.bookings.count > 0 %>
-            <span class="event">
+            <a href="/admin-booking?id=<%= slot.bookings.first.id %>" class="<%= 'event' unless slot.bookings.first.status == 'Approved' %>">
               <%= slot.bookings.first.title %>
-            </span>
+            </a>
           <% end %><br>
         <% end %>
 
       </div>
       <div class="table-cell">
 
-        <h3>Event Requests</h3>
+        <h3>Pending Event Requests</h3>
         <% @pending_event.each do |event| %>
+        <a href="/admin-booking?id=<%= event.id %>">
           <%= event.title %> - <%= event.slots.first.date.strftime("%d/%m/%Y") %>
-          <%= event.slots.first.hour %>:00 - <%= event.slots.last.hour + 1 %>:00<br>
+          <%= event.slots.first.hour %>:00 - <%= event.slots.last.hour + 1 %>:00<br></a>
         <% end %><br>
+        <a href="/all-bookings">All Bookings</a>
         <h3>User Requests</h3>
         <% @pending_users.each do |user| %>
           <%= user.firstname %> <%= user.surname %> (<%= user.email %>)<br>

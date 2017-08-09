@@ -5,9 +5,11 @@ describe Booking do
         user_id: 1,
         title: "Test",
         description: "A description of this booking, might be very long, might not be",
+        tickets: true
         )
     expect(Booking.all.count).to eq 1
     expect(Booking.first.title).to eq 'Test'
+    expect(Booking.first.tickets).to eq true
   end
 
   it 'booking gets confirmed' do

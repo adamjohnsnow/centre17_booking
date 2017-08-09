@@ -14,6 +14,7 @@ class Booking
   property :lighting, Boolean
   property :seating, Boolean
   property :audio, Boolean
+  property :tickets, Boolean
 
   belongs_to :user
   has n, :slots, through: Resource
@@ -33,7 +34,7 @@ class Booking
     lighting: params["lighting"] == 'on',
     seating: params["seating"] == 'on',
     audio: params["audio"] == 'on',
-    status: 'pending',
+    status: 'Pending',
     user_id: user_id
     )
     book_slots(params["slot"].to_i, params["duration"].to_i)

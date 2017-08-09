@@ -7,15 +7,34 @@
 </div>
 
 <% if @bookings.count > 0 %>
-  <h3> Your Bookings: </h3>
+  <h3> Your Current Bookings: </h3>
     <% @bookings.each do |booking| %>
+    <% if booking.slots.first.date >= Date.today %>
+      <div>
+       <strong><%= booking.title %></strong> -
+       <%= booking.slots[0].date.strftime("%d/%m/%Y") %>
+       <%= "#{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
+       <i class="<%= 'event' if booking.status == 'Approved' %>">Status: <%= booking.status %></i><br><br>
+     </div>
+     <% end %>
+    <% end %>
+  <% else %>
+    You currently have no active bookings
+<% end %>
+
+<% if @bookings.count > 0 %>
+  <h3> Your Past Bookings: </h3>
+    <% @bookings.each do |booking| %>
+    <% if booking.slots.first.date < Date.today %>
       <div>
        <strong><%= booking.title %></strong><br>
        <%= "#{booking.slots[0].date.strftime("%d/%m/%Y")} #{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
        <i>Status: <%= booking.status %></i><br><br>
      </div>
+     <% end %>
     <% end %>
   <% else %>
     You currently have no active bookings
 <% end %>
+
 <br><br>
