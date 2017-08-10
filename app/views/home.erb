@@ -14,7 +14,7 @@
        <strong><%= booking.title %></strong> -
        <%= booking.slots[0].date.strftime("%d/%m/%Y") %>
        <%= "#{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
-       <i class="<%= 'event' if booking.status == 'Approved' %>">Status: <%= booking.status %></i><br><br>
+       <i class="<%= 'event' if booking.status == 'Approved' %> ">Status: <%= booking.status %></i><br><br>
      </div>
      <% end %>
     <% end %>

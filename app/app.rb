@@ -47,14 +47,10 @@ class Centre17Booking < Sinatra::Base
     erb :new_booking
   end
 
-  post '/new-booking' do
-    session[:search] = params
-    redirect '/search-results'
-  end
-
   get '/search-results' do
-    @results = SlotSearch.search(session[:search])
-    @duration = session[:search][:duration].to_i
+    @results = SlotSearch.search(params)
+    p @results
+    @duration = params[:duration].to_i
     erb :booking_search
   end
 
@@ -80,8 +76,8 @@ class Centre17Booking < Sinatra::Base
       |event| [event.slots.first[:date], event.slots.first[:hour]]
     }
     @pending_users = User.all(:status => 'Pending')
-    @today_events = Slot.all(:date => '11/08/2017', Slot.bookings.status => ['Approved', 'Pending'])
-    @tomorrow_events = Slot.all(:date => '14/08/2017', Slot.bookings.status => ['Approved', 'Pending'])
+    @today_events = Booking.all(:date_time => '11/08/2017%', :status => ['Approved', 'Pending'])
+    @tomorrow_events = Booking.all(:date_time => '14/08/2017%', :status => ['Approved', 'Pending'])
     erb :admin
   end
 
@@ -105,6 +101,11 @@ class Centre17Booking < Sinatra::Base
     }
     erb :all_bookings
   end
+
+  get '/log_out' do
+    session.clear
+  end
+
   private
 
   def register_user(params)

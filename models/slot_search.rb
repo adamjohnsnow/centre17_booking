@@ -1,14 +1,13 @@
-require_relative 'slot'
-
 class SlotSearch
   attr_reader :results
 
   def self.search(params)
+    @date = Date.parse(params[:date])
     @duration = params[:duration].to_i
-    earliest = get_earliest(params.keys)
-    latest = get_latest(params.keys)
-    @results = filter_slots(search_slots(params[:date], earliest, latest))
-    @results
+    @earliest = get_earliest(params.keys)
+    @latest = get_latest(params.keys)
+    find_available
+    return @available
   end
 
   def self.get_earliest(keys)
@@ -23,27 +22,20 @@ class SlotSearch
     return 13 + @duration - 1
   end
 
-  def self.search_slots(date, earliest, latest)
-    Slot.all(
-    :date.gte => date,
-    :date.lt => Date.parse(date).next_day(7),
-    :hour.gte => earliest,
-    :hour.lt => latest
-    )
-  end
-
-  def self.filter_slots(slots)
-    return_array = []
-    0.upto(slots.length) do |i|
-      collection = slots[i..(i + @duration - 1)]
-      return_array << slots[i] if all_free(collection)
+  def self.find_available
+    @available = []
+    7.times do
+      @day = []
+      search_day
+      @date += 1
+      @available << @day
     end
-    return_array
   end
 
-  def self.all_free(collection)
-    available = collection.select{ |slot| slot.status == 'available' }
-    same_days = available.map{ |x| x.date == available[0].date }
-    available.length == @duration && same_days.count(false) == 0
+  def self.search_day
+    (@earliest..@latest).each do |hour|
+      search_slot = DateTime.parse(@date.strftime("%d/%m/%Y") + " " + hour.to_s + ":00")
+      @day << search_slot unless Booking.first(:date_time => search_slot)
+    end
   end
 end

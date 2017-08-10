@@ -1,5 +1,16 @@
 <h2>Available slots within 7 days of your search:</h2>
 
-<% @results.each do |slot| %>
-<div> <a href="/book?id=<%=slot.id%>&dur=<%=@duration%>"><%= slot.date.strftime("%d/%m/%Y") %> <%= slot.hour %>:00-<%= slot.hour.to_i + @duration %>:00</a></div>
-<% end %>
+<div class="table">
+  <div class="table-body">
+    <div class="table-row">
+      <% @results.each do |day| %>
+        <div class="table-cell">
+          <%= day.first.strftime("%d/%m/%Y") %><BR>
+        <% day.each do |slot| %>
+          <a href="/book?datetime=<%= slot.to_s %>"><%= slot.strftime("%H:%M") %></a><br>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

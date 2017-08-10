@@ -26,8 +26,6 @@ def book_one_slot
 end
 
 def do_search
-  create_some_slots
-  expect(Slot.all).not_to be_empty
   sign_up
   sign_in
   click_link 'Request New Booking'

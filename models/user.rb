@@ -10,7 +10,7 @@ class User
   property :surname, String
   property :email, String, :unique => true
   property :phone, String
-  property :password_digest, String
+  property :password_digest, Text
   property :cash_balance, Float
   property :time_balance, Float
   property :status, String
