@@ -3,27 +3,22 @@
     <div class="table-row">
       <div class="table-cell">
         <h3>On Today</h3>
-        <% @today_events.each do |slot| %>
-          <%= slot.hour %>:00
-          <% if slot.bookings.count > 0 %>
-            <a href="/admin-booking?id=<%= slot.bookings.first.id %>" class="<%= 'event' unless slot.bookings.first.status == 'Approved' %>">
-              <%= slot.bookings.first.title %>
+        <% @today_events.each do |booking| %>
+            <a href="/admin-booking?id=<%= booking.id %>" class="<%= 'event' unless booking.status == 'Approved' %>">
+              <%= booking.title %> - <%= booking.date_time.strftime("%H:%M") %> - <%= (booking.date_time + (booking.duration/24.0)).strftime("%H:%M") %>
             </a>
           <% end %><br>
-        <% end %>
+
 
       </div>
       <div class="table-cell">
 
         <h3>On Tomorrow</h3>
-        <% @tomorrow_events.each do |slot| %>
-          <%= slot.hour %>:00
-          <% if slot.bookings.count > 0 %>
-            <a href="/admin-booking?id=<%= slot.bookings.first.id %>" class="<%= 'event' unless slot.bookings.first.status == 'Approved' %>">
-              <%= slot.bookings.first.title %>
+        <% @tomorrow_events.each do |booking| %>
+            <a href="/admin-booking?id=<%= booking.id %>" class="<%= 'event' unless booking.status == 'Approved' %>">
+              <%= booking.title %> - <%= booking.date_time.strftime("%H:%M") %> - <%= (booking.date_time + (booking.duration/24.0)).strftime("%H:%M") %>
             </a>
           <% end %><br>
-        <% end %>
 
       </div>
       <div class="table-cell">
@@ -31,8 +26,7 @@
         <h3>Pending Event Requests</h3>
         <% @pending_event.each do |event| %>
         <a href="/admin-booking?id=<%= event.id %>">
-          <%= event.title %> - <%= event.slots.first.date.strftime("%d/%m/%Y") %>
-          <%= event.slots.first.hour %>:00 - <%= event.slots.last.hour + 1 %>:00<br></a>
+          <%= event.title %> - <%= event.date_time.strftime("%d/%m/%Y") %><br>
         <% end %><br>
         <a href="/all-bookings">All Bookings</a>
         <h3>User Requests</h3>

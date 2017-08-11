@@ -67,12 +67,10 @@ class Centre17Booking < Sinatra::Base
 
   get '/admin' do
     authorised?
-    @pending_event = Booking.all(:status => 'Pending').sort_by{
-      |event| [event.slots.first[:date], event.slots.first[:hour]]
-    }
+    @pending_event = Booking.all(:status => 'Pending', :order => [ :date_time.asc ])
     @pending_users = User.all(:status => 'Pending')
-    @today_events = Booking.all(:date_time => '11/08/2017%', :status => ['Approved', 'Pending'])
-    @tomorrow_events = Booking.all(:date_time => '14/08/2017%', :status => ['Approved', 'Pending'])
+    @today_events = Booking.all(:date_time.gte => Date.today, :date_time.lt => Date.today + 1, :status => ['Approved', 'Pending'], :order => [ :date_time.asc ])
+    @tomorrow_events = Booking.all(:date_time.gte => Date.today + 1, :date_time.lt => Date.today + 2, :status => ['Approved', 'Pending'], :order => [ :date_time.asc ])
     erb :admin
   end
 
@@ -91,9 +89,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   get '/all-bookings' do
-    @bookings = Booking.all.sort_by{
-      |event| [event.slots.first[:date], event.slots.first[:hour]]
-    }
+    @bookings = Booking.all(:order => [ :date_time.asc ])
     erb :all_bookings
   end
 

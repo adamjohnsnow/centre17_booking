@@ -28,9 +28,10 @@ class Booking
     seating: params["seating"] == 'on',
     audio: params["audio"] == 'on',
     status: 'Pending',
+    date_time: params["slot"],
+    duration: params[:duration],
     user_id: user_id
     )
-    book_slots(params["slot"].to_i, params["duration"].to_i)
   end
 
   def self.book_slots(slot, duration)

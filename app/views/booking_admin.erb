@@ -1,8 +1,8 @@
 <h2><%= @event.title %></h2>
 from
 <%= @event.user.firstname + ' ' + @event.user.surname %><br>
-<%= @event.slots.first.date.strftime("%d/%m/%Y") %> -
-<%= @event.slots.first.hour %>:00 - <%= @event.slots.last.hour + 1 %>:00<br>
+<%= @event.date_time.strftime("%d/%m/%Y") %> -
+<%= @event.date_time.strftime("%H:%M") %> - <%= (@event.date_time + (@event.duration/24.0)).strftime("%H:%M") %><br><br>
 Description: <%= @event.description %><br>
 Lighting: <%= @event.lighting %><br>
 Seating: <%= @event.seating %><br>

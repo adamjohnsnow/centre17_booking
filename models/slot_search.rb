@@ -17,7 +17,7 @@ class SlotSearch
   end
 
   def self.get_latest(keys)
-    return 24 if keys.count('evening') == 1
+    return 23 - @duration if keys.count('evening') == 1
     return 18 - 1 if keys.count('afternoon') == 1
     return 13 - 1
   end
@@ -33,10 +33,10 @@ class SlotSearch
   end
 
   def self.search_day
-    @hour = @earliest
+    @hour = 8
     until @hour > @latest do
       search_slot = DateTime.parse(@date.strftime("%d/%m/%Y") + " " + @hour.to_s + ":00")
-      @day << search_slot if search_duration(search_slot)
+      @day << search_slot if search_duration(search_slot) && @hour >= @earliest
       @hour += 1
     end
   end

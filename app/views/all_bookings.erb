@@ -13,8 +13,8 @@
     <% @bookings.each do |booking| %>
     <div class="table-row">
       <div class="table-cell"><a href="/admin-booking?id=<%= booking.id %>"><%= booking.title %></a></div>
-      <div class="table-cell"><%= booking.slots.first.date.strftime("%d/%m/%Y") %></div>
-      <div class="table-cell"><%= booking.slots.first.hour %>:00 - <%= booking.slots.last.hour + 1 %>:00</div>
+      <div class="table-cell"><%= booking.date_time.strftime("%d/%m/%Y") %></div>
+      <div class="table-cell"><%= booking.date_time.strftime("%H:%M") %> - <%= (booking.date_time + (booking.duration/24.0)).strftime("%H:%M") %><br></div>
       <div class="table-cell"><%= booking.status %></div>
       <div class="table-cell"><%= 'Yes' if booking.lighting == true %></div>
       <div class="table-cell"><%= 'Yes' if booking.seating == true %></div>

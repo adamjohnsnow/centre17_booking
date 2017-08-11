@@ -9,11 +9,12 @@
 <% if @bookings.count > 0 %>
   <h3> Your Current Bookings: </h3>
     <% @bookings.each do |booking| %>
-    <% if booking.slots.first.date >= Date.today %>
+    <% p booking %>
+    <% if booking.date_time >= Date.today %>
       <div>
        <strong><%= booking.title %></strong> -
-       <%= booking.slots[0].date.strftime("%d/%m/%Y") %>
-       <%= "#{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
+       <%= booking.date_time.strftime("%d/%m/%Y") %>
+       <%= booking.date_time.strftime("%H:%M") %> - <%= (booking.date_time + (booking.duration/24.0)).strftime("%H:%M") %><br>
        <i class="<%= 'event' if booking.status == 'Approved' %> ">Status: <%= booking.status %></i><br><br>
      </div>
      <% end %>
@@ -25,10 +26,11 @@
 <% if @bookings.count > 0 %>
   <h3> Your Past Bookings: </h3>
     <% @bookings.each do |booking| %>
-    <% if booking.slots.first.date < Date.today %>
+    <% if booking.date_time < Date.today %>
       <div>
-       <strong><%= booking.title %></strong><br>
-       <%= "#{booking.slots[0].date.strftime("%d/%m/%Y")} #{booking.slots[0].hour}:00-#{booking.slots.last.hour + 1}:00" %><br>
+       <strong><%= booking.title %></strong> -
+       <%= booking.date_time.strftime("%d/%m/%Y") %>
+       <%= booking.date_time.strftime("%H:%M") %> - <%= (booking.date_time + (booking.duration/24.0)).strftime("%H:%M") %><br>
        <i>Status: <%= booking.status %></i><br><br>
      </div>
      <% end %>
