@@ -49,17 +49,12 @@ class Centre17Booking < Sinatra::Base
 
   get '/search-results' do
     @results = SlotSearch.search(params)
-    p @results
     @duration = params[:duration].to_i
     erb :booking_search
   end
 
   get '/book' do
-    @quote = 0
-    @slots = Slot.get_collection(params[:id], params[:dur].to_i - 1)
-    @slots.each do |slot|
-      @quote += slot.base_price
-    end
+    @slot = DateTime.parse(params[:datetime])
     @duration = params[:dur].to_i
     erb :make_booking_request
   end

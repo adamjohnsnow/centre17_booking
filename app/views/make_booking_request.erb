@@ -1,9 +1,8 @@
-<h2><%= @slots[0].date.strftime("%d/%m/%Y") %> from <%= @slots[0].hour %>:00-<%=@slots[0].hour + @duration%>:00</h2>
-<h3>The approximate cost for this <%= @duration %> hour booking is £<%= @quote %>0*</h3>
+<h2><%= @slot.strftime("%d/%m/%Y") %> from <%= @slot.strftime("%H:%M") %> for <%= @duration %> hours</h2>
 
 <h2>To finalise your booking request please complete the following information:</h2>
 <form action="/book" method="POST">
-  <input type="hidden" name="slot" value="<%= @slots[0].id %>">
+  <input type="hidden" name="slot" value="<%= @slot %>">
   <input type="hidden" name="duration" value="<%= @duration  %>">
   <p><input type="text" name="title" placeholder="Booking title" size="50"></p>
   Will you using any of the following (please enter details in description)?:<br>

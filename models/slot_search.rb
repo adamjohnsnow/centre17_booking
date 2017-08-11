@@ -18,8 +18,8 @@ class SlotSearch
 
   def self.get_latest(keys)
     return 24 if keys.count('evening') == 1
-    return 18 + @duration - 1 if keys.count('afternoon') == 1
-    return 13 + @duration - 1
+    return 18 - 1 if keys.count('afternoon') == 1
+    return 13 - 1
   end
 
   def self.find_available
@@ -33,9 +33,22 @@ class SlotSearch
   end
 
   def self.search_day
-    (@earliest..@latest).each do |hour|
-      search_slot = DateTime.parse(@date.strftime("%d/%m/%Y") + " " + hour.to_s + ":00")
-      @day << search_slot unless Booking.first(:date_time => search_slot)
+    @hour = @earliest
+    until @hour > @latest do
+      search_slot = DateTime.parse(@date.strftime("%d/%m/%Y") + " " + @hour.to_s + ":00")
+      @day << search_slot if search_duration(search_slot)
+      @hour += 1
     end
+  end
+
+  def self.search_duration(slot)
+    @duration.times do
+      if Booking.first(:date_time => slot)
+        @hour += Booking.first(:date_time => slot).duration
+        return false
+      end
+      slot += (1/24.0)
+    end
+    return true
   end
 end

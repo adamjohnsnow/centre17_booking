@@ -7,7 +7,7 @@
         <div class="table-cell">
           <%= day.first.strftime("%d/%m/%Y") %><BR>
         <% day.each do |slot| %>
-          <a href="/book?datetime=<%= slot.to_s %>"><%= slot.strftime("%H:%M") %></a><br>
+          <a href="/book?datetime=<%= slot.to_s %>&dur=<%= @duration %>"><%= slot.strftime("%H:%M") %> - <%= (slot + (@duration/24.0)).strftime("%H:%M") %></a><br>
         <% end %>
         </div>
       <% end %>
