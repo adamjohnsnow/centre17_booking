@@ -49,6 +49,17 @@ feature 'User Journey' do
     expect(page).to have_content 'Search for availability'
   end
 
+  scenario 'cannot search past' do
+    sign_up
+    sign_in
+    click_button 'Request New Booking'
+    fill_in 'date', with: '07/09/2017'
+    fill_in 'duration', with: 3
+    check 'afternoon'
+    click_button 'Start search'
+    expect(page).to have_content 'Unable to search past dates'
+  end
+
   scenario 'make booking search' do
     do_search
     expect(page).to have_content 'Available slots within 7 days of your search:'

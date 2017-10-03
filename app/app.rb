@@ -49,6 +49,10 @@ class Centre17Booking < Sinatra::Base
   end
 
   get '/search-results' do
+    if DateTime.parse(params[:date]) < Date.today
+      flash.next[:notice] = 'Unable to search past dates'
+      redirect '/new-booking'
+    end
     @results = SlotSearch.search(params)
     @duration = params[:duration].to_i
     erb :booking_search
