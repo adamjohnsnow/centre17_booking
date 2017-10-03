@@ -52,13 +52,13 @@ feature 'User Journey' do
   scenario 'make booking search' do
     do_search
     expect(page).to have_content 'Available slots within 7 days of your search:'
-    expect(page).to have_content '07/07/2017 13:00 - 16:00'
+    expect(page).to have_content '07/11/2017 13:00 - 16:00'
   end
 
   scenario 'book slot' do
     do_search
     click_link('13:00 - 16:00', :match => :first)
-    expect(page).to have_content '07/07/2017 from 13:00'
+    expect(page).to have_content '07/11/2017 from 13:00'
   end
 
   scenario 'request booking' do
@@ -71,7 +71,7 @@ feature 'User Journey' do
     expect(Booking.first.lighting).to be true
     expect(page).to have_content 'Thank you for your booking request. Someone from the CentrE17'
     expect(page).to have_content 'Event One'
-    expect(page).to have_content '07/07'
+    expect(page).to have_content '07/11'
     expect(page).to have_content 'Status: Pending'
   end
 end
@@ -97,5 +97,27 @@ feature 'Admin Journey' do
     expect(page).to have_content 'On Today'
   end
 
+  scenario 'has pending event' do
+    make_booking
+    visit '/admin'
+    expect(page).to have_content 'Event One'
+  end
 
+  scenario 'go to pending event' do
+    make_booking
+    visit '/admin'
+    click_link('Event One', :match => :first)
+    expect(page).to have_content 'from Mister Something'
+  end
+
+  scenario 'approve pending event' do
+    make_booking
+    visit '/admin'
+    click_link('Event One', :match => :first)
+    fill_in 'admin_notes', with: 'Some text'
+    select 'Approved', from: "status"
+    click_button 'submit'
+    expect(Booking.first.status).to eq 'Approved'
+    expect(Booking.first.admin_notes).to eq 'Some text'
+  end
 end
