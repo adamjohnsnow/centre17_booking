@@ -22,23 +22,16 @@ class Booking
 
   def self.book(params, user_id)
     @booking = Booking.create(
-    description: params["description"],
-    title: params["title"],
-    lighting: params["lighting"] == 'on',
+    description: params[:description],
+    title: params[:title],
+    lighting: params[:lighting] == 'on',
     seating: params["seating"] == 'on',
     audio: params["audio"] == 'on',
+    tickets: params[:tickets] == 'on',
     status: 'Pending',
     date_time: params["slot"],
     duration: params[:duration],
     user_id: user_id
     )
-  end
-
-  def self.book_slots(slot, duration)
-    duration.times do
-      @booking.slots << Slot.get(slot)
-      slot += 1
-    end
-    @booking.save!
   end
 end

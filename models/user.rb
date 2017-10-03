@@ -36,7 +36,7 @@ class User
             surname: surname,
             email: email,
             phone: phone,
-            status: :pending,
+            status: "Pending",
             cash_balance: 0,
             time_balance: 0,
             comments: comments

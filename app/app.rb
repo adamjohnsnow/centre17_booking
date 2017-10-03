@@ -18,6 +18,7 @@ class Centre17Booking < Sinatra::Base
   end
 
   get '/home' do
+    redirect '/' if session[:user] == nil
     @user = session[:user]
     @bookings = User.get(session[:user_id]).bookings
     erb :home
@@ -93,8 +94,23 @@ class Centre17Booking < Sinatra::Base
     erb :all_bookings
   end
 
-  get '/log_out' do
-    session.clear
+  get '/admin-user' do
+    authorised?
+    @user = User.get(params[:id])
+    erb :user_admin
+  end
+
+  post '/admin-user' do
+    authorised?
+    user = User.get(params[:id])
+    user.update(params)
+    user.save!
+    redirect '/admin'
+  end
+
+  get '/logout' do
+    session.destroy
+    redirect '/'
   end
 
   private

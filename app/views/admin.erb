@@ -26,12 +26,13 @@
         <h3>Pending Event Requests</h3>
         <% @pending_event.each do |event| %>
         <a href="/admin-booking?id=<%= event.id %>">
-          <%= event.title %> - <%= event.date_time.strftime("%d/%m/%Y") %><br>
+          <%= event.title %> - <%= event.date_time.strftime("%d/%m/%Y") %></a><br>
         <% end %><br>
         <a href="/all-bookings">All Bookings</a>
         <h3>User Requests</h3>
         <% @pending_users.each do |user| %>
-          <%= user.firstname %> <%= user.surname %> (<%= user.email %>)<br>
+        <a href="admin-user?id=<%= user.id %>">
+          <%= user.firstname %> <%= user.surname %> (<%= user.email %>)</a><br>
         <% end %>
       </div>
 

@@ -1,0 +1,21 @@
+
+<%= @user.firstname + ' ' + @user.surname %><br>
+email: <%= @user.email %><br />
+phone: <%= @user.phone %><br />
+Cash Balance: <%= @user.cash_balance %>
+TimeBank Balance: <%= @user.time_balance %>
+
+<form action="/admin-user" method="post">
+  <input type="hidden" name="id" value="<%= @user.id %>">
+  <textarea cols="40" rows="4" name="comments" value="<%= @user.comments %>"><%= @user.comments %></textarea>
+  <select name="status">
+    <% STATUS.each do |status| %>
+      <% if @user.status == status %>
+        <option selected value="<%= status %>"><%= status %></option>
+      <% else %>
+        <option value="<%= status %>"><%= status %></option>
+      <% end %>
+    <% end %>
+  </select>
+  <input type="submit">
+</form>

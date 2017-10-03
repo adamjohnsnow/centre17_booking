@@ -52,28 +52,27 @@ feature 'User Journey' do
   scenario 'make booking search' do
     do_search
     expect(page).to have_content 'Available slots within 7 days of your search:'
-    expect(page).to have_content '07/07/2017 14:00-17:00'
+    expect(page).to have_content '07/07/2017 13:00 - 16:00'
   end
 
   scenario 'book slot' do
     do_search
-    click_link('07/07/2017 14:00-17:00')
-    expect(page).to have_content 'The approximate cost for this 3 hour booking is £90.00'
+    click_link('13:00 - 16:00', :match => :first)
+    expect(page).to have_content '07/07/2017 from 13:00'
   end
 
   scenario 'request booking' do
     do_search
-    click_link('07/07/2017 14:00-17:00')
+    click_link('13:00 - 16:00', :match => :first)
     fill_in 'title', with: "Event One"
     check 'lighting'
     click_button 'Make Booking Request'
     expect(Booking.all.count).to eq 1
     expect(Booking.first.lighting).to be true
-    expect(Booking.first.slots.count).to eq 3
     expect(page).to have_content 'Thank you for your booking request. Someone from the CentrE17'
     expect(page).to have_content 'Event One'
     expect(page).to have_content '07/07'
-    expect(page).to have_content 'Status: pending'
+    expect(page).to have_content 'Status: Pending'
   end
 end
 

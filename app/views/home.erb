@@ -3,13 +3,13 @@
 <h2>Hello, <%= @user %></h2>
 <div class="flash"><%= flash[:notice] %></div>
 <div>
-  <a href="/new-booking">Request New Booking</a>
+  <a href="/new-booking">Request New Booking</a><br />
+  <a href="/logout"> Log Out </a>
 </div>
 
 <% if @bookings.count > 0 %>
   <h3> Your Current Bookings: </h3>
     <% @bookings.each do |booking| %>
-    <% p booking %>
     <% if booking.date_time >= Date.today %>
       <div>
        <strong><%= booking.title %></strong> -
