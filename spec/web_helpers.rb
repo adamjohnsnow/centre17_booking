@@ -28,7 +28,7 @@ end
 def do_search
   sign_up
   sign_in
-  click_link 'Request New Booking'
+  click_button 'Request New Booking'
   fill_in 'date', with: '07/07/2017'
   fill_in 'duration', with: 3
   check 'afternoon'

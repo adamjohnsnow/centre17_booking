@@ -1,11 +1,12 @@
-<img width="300" style="padding-top: 30px;" src="https://i0.wp.com/thecentre17.com/wp-content/uploads/2017/03/cropped-cropped-cropped-centre17_outline_web_transparent.png">
+<img width="150" style="padding-top: 30px;" src="https://i0.wp.com/thecentre17.com/wp-content/uploads/2017/03/cropped-cropped-cropped-centre17_outline_web_transparent.png">
 <h1>Booking Portal</h1>
 <h2>Hello, <%= @user %></h2>
 <div class="flash"><%= flash[:notice] %></div>
-<div>
-  <a href="/new-booking">Request New Booking</a><br />
-  <a href="/logout"> Log Out </a>
-</div>
+<form action="/new-booking">
+  <input type="submit" class="btn" value="Request New Booking">
+</form>
+<a href="/logout"> Log Out </a>
+
 
 <% if @bookings.count > 0 %>
   <h3> Your Current Bookings: </h3>

@@ -30,7 +30,7 @@ describe User do
 
     it { expect(User.first.time_balance).to eq 0 }
 
-    it { expect(User.first.status).to eq 'pending' }
+    it { expect(User.first.status).to eq 'Pending' }
 
     it { expect(User.first.comments).to eq 'test text from comments' }
   end

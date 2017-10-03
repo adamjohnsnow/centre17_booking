@@ -45,7 +45,7 @@ feature 'User Journey' do
   scenario 'got to search page' do
     sign_up
     sign_in
-    click_link 'Request New Booking'
+    click_button 'Request New Booking'
     expect(page).to have_content 'Search for availability'
   end
 

@@ -1,6 +1,8 @@
 <h2><%= @event.title %></h2>
 from
-<%= @event.user.firstname + ' ' + @event.user.surname %><br>
+<%= @event.user.firstname + ' ' + @event.user.surname %><br />
+<a href="mailto:<%= @event.user.email %>"> email </a><br />
+phone: <%= @event.user.phone %><br />
 <%= @event.date_time.strftime("%d/%m/%Y") %> -
 <%= @event.date_time.strftime("%H:%M") %> - <%= (@event.date_time + (@event.duration/24.0)).strftime("%H:%M") %><br><br>
 Description: <%= @event.description %><br>
@@ -10,7 +12,8 @@ Audio: <%= @event.audio %><br>
 Tickets: <%= @event.tickets %><br>
 <form action="/admin-booking" method="post">
   <input type="hidden" name="id" value="<%= @event.id %>">
-  <textarea cols="40" rows="4" name="admin_notes" value="<%= @event.admin_notes %>"></textarea>
+  Notes:
+  <textarea cols="40" rows="4" name="admin_notes" value="<%= @event.admin_notes %>"></textarea><br />
   <select name="status">
     <% STATUS.each do |status| %>
       <% if @event.status == status %>
@@ -19,6 +22,6 @@ Tickets: <%= @event.tickets %><br>
         <option value="<%= status %>"><%= status %></option>
       <% end %>
     <% end %>
-  </select>
-  <input type="submit">
+  </select><br /><br />
+  <input type="submit" class="btn">
 </form>

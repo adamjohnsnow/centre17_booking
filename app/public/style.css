@@ -46,12 +46,12 @@ textarea{
   font-size: 90%;
 }
 .btn {
-  background: #a90329;
-  background-image: -webkit-linear-gradient(top, #a90329, #8f0222);
-  background-image: -moz-linear-gradient(top, #a90329, #8f0222);
-  background-image: -ms-linear-gradient(top, #a90329, #8f0222);
-  background-image: -o-linear-gradient(top, #a90329, #8f0222);
-  background-image: linear-gradient(to bottom, #a90329, #8f0222);
+  background: #f9a65d;
+  background-image: -webkit-linear-gradient(top, #f9a65d, #8f0222);
+  background-image: -moz-linear-gradient(top, #f9a65d, #8f0222);
+  background-image: -ms-linear-gradient(top, #f9a65d, #8f0222);
+  background-image: -o-linear-gradient(top, #f9a65d, #8f0222);
+  background-image: linear-gradient(to bottom, #f9a65d, #8f0222);
   -webkit-border-radius: 6;
   -moz-border-radius: 6;
   border-radius: 6px;
